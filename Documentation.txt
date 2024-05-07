@@ -1,0 +1,132 @@
+Question Answering API
+This API allows you to ask questions based on the content of a specified webpage. It retrieves the webpage content, extracts relevant sections, and uses a pre-trained question-answering model to generate an answer to the provided question.
+Requirements
+
+Python 3.x
+Required libraries:
+
+requests
+beautifulsoup4
+lxml
+transformers
+gradio
+
+
+
+You can install the required libraries using pip:
+Copy codepip install requests beautifulsoup4 lxml transformers gradio
+Usage
+
+Import the necessary libraries and functions from the api.py file.
+Create an instance of the gr.Interface class, specifying the input and output components:
+pythonCopy codeiface = gr.Interface(
+    fn=answer_question,
+    inputs=[
+        gr.Textbox(label="URL"),
+        gr.Textbox(label="Question")
+    ],
+    outputs=[
+        gr.Textbox(label="Answer"),
+        gr.Number(label="Confidence Score")
+    ],
+    title="Question Answering",
+    description="Enter a URL and a question, and the model will try to answer it based on the webpage content."
+)
+
+Launch the API interface by calling the launch() method on the iface instance:
+pythonCopy codeiface.launch()
+
+Access the API through the provided URL in your web browser.
+
+API Endpoints
+Answer Question
+
+URL: /
+Method: POST
+Input:
+
+url (string): The URL of the webpage to fetch content from.
+question (string): The question to be answered based on the webpage content.
+
+
+Output:
+
+answer (string): The generated answer to the provided question.
+score (float): The confidence score of the generated answer.
+
+
+
+Functions
+fetch_webpage_content(url)
+Fetches the content of a webpage given its URL.
+
+Parameters:
+
+url (string): The URL of the webpage to fetch content from.
+
+
+Returns:
+
+content (string): The extracted text content of the webpage.
+error_message (string or None): An error message if the webpage retrieval fails, otherwise None.
+
+
+
+clean_references(answer)
+Removes reference markers (e.g., [1], [2]) from the generated answer.
+
+Parameters:
+
+answer (string): The generated answer containing reference markers.
+
+
+Returns:
+
+cleaned_answer (string): The answer with reference markers removed.
+
+
+
+expand_answer(context, answer)
+Expands the generated answer by including additional context from the webpage content.
+
+Parameters:
+
+context (string): The full text content of the webpage.
+answer (string): The generated answer to be expanded.
+
+
+Returns:
+
+expanded_answer (string): The expanded answer with additional context.
+
+
+
+answer_question(url, question)
+Generates an answer to a question based on the content of a specified webpage.
+
+Parameters:
+
+url (string): The URL of the webpage to fetch content from.
+question (string): The question to be answered.
+
+
+Returns:
+
+answer (string): The generated answer to the provided question.
+score (float): The confidence score of the generated answer.
+
+
+
+Example
+pythonCopy codefrom api import answer_question
+
+url = "https://en.wikipedia.org/wiki/Python_(programming_language)"
+question = "What is Python?"
+
+answer, score = answer_question(url, question)
+print(f"Answer: {answer}")
+print(f"Confidence Score: {score}")
+Output:
+Copy codeAnswer: Python is an interpreted, high-level, general-purpose programming language.
+Confidence Score: 0.9876543
+Note: The actual answer and confidence score may vary depending on the webpage content and the pre-trained model used.
