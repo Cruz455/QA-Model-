@@ -11,7 +11,7 @@ def fetch_webpage_content(url):
     if response.status_code != 200:
         return None, "Failed to retrieve the webpage. Please check the URL or your internet connection."
     soup = BeautifulSoup(response.text, 'lxml')
-    content_sections = soup.find_all(['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol'])
+    content_sections = soup.find_all('p')
     content = ' '.join([section.text for section in content_sections])
     return content, None
 
