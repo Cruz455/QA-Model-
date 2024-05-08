@@ -12,7 +12,7 @@ This repository contains a Question Answering API that generates answers to ques
 
 ## Requirements
 
-- Python 3.x
+- Python 3.10 or above
 - Required libraries:
   - `requests`
   - `beautifulsoup4`
@@ -23,14 +23,14 @@ This repository contains a Question Answering API that generates answers to ques
 ## Installation
 
 1. Clone the repository:
-git clone https://github.com/your-username/your-repository.git
-Copy code
+git clone https://github.com/Cruz455/QA-Model-.git
+
 2. Navigate to the project directory:
 cd your-repository
-Copy code
+
 3. Create a virtual environment (optional but recommended):
 python -m venv venv
-Copy code
+
 4. Activate the virtual environment:
 - For Windows:
   ```
@@ -43,12 +43,12 @@ Copy code
 
 5. Install the required libraries:
 pip install -r requirements.txt
-Copy code
+
 ## Usage
 
 1. Run the API:
 python api.py
-Copy code
+
 2. Access the API in your web browser at `http://localhost:7860`.
 
 3. Enter a URL and a question in the provided input fields.
